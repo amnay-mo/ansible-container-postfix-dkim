@@ -1,0 +1,20 @@
+version: "1"
+services:
+  # Add your containers here, specifying the base image you want to build from
+  # For example:
+  #
+  mail:
+    image: debian-sshd-py:v1
+    ports:
+      - "2525:25"
+      - "8891"
+    command: ['/usr/bin/supervisord', '-c', '/etc/supervisor/supervisord.conf']
+  #   dev_overrides:
+  #     environment:
+  #       - "DEBUG=1"
+  #
+registries: {}
+  # Add optional registries used for deployment. For example:
+  #  google:
+  #    url: https://gcr.io
+  #    namespace: my-cool-project-xxxxxx   

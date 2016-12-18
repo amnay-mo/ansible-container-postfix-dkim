@@ -1,0 +1,11 @@
+[supervisord]
+nodaemon=true
+[program:postfix]
+command=/etc/init.d/postfix start
+process_name=master
+autorestart=false
+startsecs=0
+directory=/etc/postfix
+
+[program:opendkim]
+command=/usr/sbin/opendkim -x /etc/opendkim.conf -f

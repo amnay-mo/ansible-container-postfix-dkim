@@ -1,0 +1,35 @@
+# This should be your Ansible playbooks to provision your containers.
+# An inventory will be automatically created using the names of the services
+# from your container.yml file.
+# Add any roles or other modules you'll need to this directory too.
+# For many examples of roles, check out Ansible Galaxy: https://galaxy.ansible.com/
+#
+---
+- hosts: mail
+  gather_facts: false
+  vars_files: ['var_mail.yml']
+  pre_tasks:
+    - name: Ensuring supervisord
+      apt:
+         name: supervisor
+         state: present
+    
+    - name: Ensuring supervisord conf
+      template: src=supervisord.conf.j2 dest=/etc/supervisor/supervisord.conf
+
+    - name: Ensuring /etc/opendkim/keys directory
+      file: path=/etc/opendkim/keys state=directory 
+
+    - name: Pushing DKIM private keys
+      copy: src=keys/{{ item.key }} dest=/etc/opendkim/keys mode=0400
+      with_items: "{{ dkim_domains }}"
+    
+    - name: Pushing postfix quickstarting script
+      copy:
+         dest: /root/run_postfix.sh
+         src: run_postfix.sh
+         mode: 0744
+ 
+  roles:
+    - role: ansible-dkim
+
