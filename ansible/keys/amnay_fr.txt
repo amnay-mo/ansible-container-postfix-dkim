@@ -1,6 +1,0 @@
-1481275590.amnay._domainkey.amnay.fr. IN TXT (
-        "v=DKIM1;t=s;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDoS3+5+h9AsMg/xXfIipvVNOxE"
-        "FSoBruRWJ8V+pxh6Koe4T/u0l2T/YAPUXkiMzslxjZqIiLJ4WCe9MJ3YiELmYI+u"
-        "P+dMCTd8WObN/7ARjC8LaGteexhoQA3TvZdzlscuTB0KOVC/4Swru4j+ptH2Exfn"
-        "ED5fYMGN8RLomqa6OQIDAQAB")
-
